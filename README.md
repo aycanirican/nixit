@@ -1,18 +1,5 @@
 # nixit
 
-Build my haskell project using nix.
-
-## nixit assumes
-
-  - You are in your project's directory
-	```
-	  mkdir 
-	```
-  - You defined your haskell dependencies as a list
-  - You have a proper Main.hs file
-  - 
-# nixit
-
 Build my haskell executable using nix.
 
 ## Usage
