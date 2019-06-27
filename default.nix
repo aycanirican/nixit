@@ -1,7 +1,7 @@
 { pkgs ? import <nixpkgs> {}
 , name ? "example"
 , version ? "0.0.1"
-, deps ? "warp aeson conduit conduit-extra http-client"
+, deps ? ""
 }:
 
 let
