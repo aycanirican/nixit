@@ -31,8 +31,13 @@ Build my haskell executable using nix.
       main = print "5 more minutes...Done."
     ```
   - Optionally you write all haskell dependencies (one for each line)
-    in a file `.nixit.deps`.
-  
+    in a file `.nixit.deps` like:
+    ```
+      aeson
+      servant-client
+      lens
+    ```
+    
 Then you can have your executable with:
 ```
 nix build -f https://github.com/aycanirican/nixit/archive/master.tar.gz \
