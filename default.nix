@@ -1,12 +1,15 @@
 { pkgs ? import <nixpkgs> {}
 , name ? "example"
 , version ? "0.0.1"
-, deps ? ""
+, deps ? null
 }:
 
 let
   ghc = pkgs.haskellPackages.ghcWithPackages (ps:
-    with ps; pkgs.lib.attrVals (pkgs.lib.splitString " " deps) ps
+    with ps;
+    if null == deps 
+      then []
+      else pkgs.lib.attrVals (pkgs.lib.splitString " " deps) ps
   );
 in
 
@@ -17,11 +20,9 @@ pkgs.stdenv.mkDerivation {
 
   buildInputs = [ ghc ];
   
-  buildPhase = ''
+  buildPhase = '' '';
+  installPhase = ''
     mkdir -p $out
     ${ghc}/bin/ghc --make Main.hs -o $out/${name}
-  '';
-  installPhase = ''
-    
   '';
 }
