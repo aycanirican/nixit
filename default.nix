@@ -1,7 +1,6 @@
 { pkgs ? import <nixpkgs> {}
 , name ? "example"
 , version ? "0.0.1"
-, src ? /Users/fxr/dev/project1
 , packages ? [
     "aeson"
     "text"
@@ -16,9 +15,15 @@ in
 pkgs.stdenv.mkDerivation {
   inherit name version;
   
-  buildInputs = [ ghc ];
+  src = ./.;
 
-  installPhase = ''
+  buildInputs = [ ghc ];
+  
+  buildPhase = ''
+    mkdir -p $out
     ${ghc}/bin/ghc --make Main.hs -o $out/${name}
+  '';
+  installPhase = ''
+    
   '';
 }
