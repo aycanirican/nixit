@@ -33,7 +33,15 @@ nix build -f https://github.com/aycanirican/nixit/archive/master.tar.gz \
   --argstr deps     "$(cat .nixit.deps | xargs)"
 ```
 
-And also you can have a ghci session with ghcid (but you know how to add your own tools right?):
+And also you can have a ghci session with:
 ```
-  nix-shell -p "pkgs.haskellPackages.ghcWithPackages (p: with p; [ $(cat .nixit.deps | xargs) ])" -p haskellPackages.ghcid
+  nix-shell -p "pkgs.haskellPackages.ghcWithPackages (p: with p; [ $(cat .nixit.deps | xargs) ])" \
+    --command "ghci Main.hs"
+```
+
+Or if you want to just execute ghcid and watch it recompiling your project:
+```
+nix-shell -p "pkgs.haskellPackages.ghcWithPackages (p: with p; [ $(cat .nixit.deps | xargs) ])" \
+  -p haskellPackages.ghcid \
+  --command "ghcid --command \"ghci Main.hs\""
 ```
