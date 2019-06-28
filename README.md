@@ -33,7 +33,7 @@ nix build -f https://github.com/aycanirican/nixit/archive/master.tar.gz \
   --argstr deps     "$(cat .nixit.deps | xargs)"
 ```
 
-And also you can have a ghci session:
+And also you can have a ghci session with ghcid (but you know how to add your own tools right?):
 ```
-  nix-shell -p "pkgs.haskellPackages.ghcWithPackages (p: with p; [ $(cat .nixit.deps | xargs) ])";
+  nix-shell -p "pkgs.haskellPackages.ghcWithPackages (p: with p; [ $(cat .nixit.deps | xargs) ])" -p haskellPackages.ghcid
 ```
