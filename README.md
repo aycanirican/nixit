@@ -28,9 +28,8 @@ Build my haskell executable using nix.
 Then you can have your executable with:
 ```
 nix build -f https://github.com/aycanirican/nixit/archive/master.tar.gz \
-  --argstr version  "0.0.1" \
-  --argstr name     "myexecutable" \
-  --argstr deps     "$(cat .nixit.deps | xargs)"
+  --arg    src  "$PWD" \
+  --argstr deps "$(cat .nixit.deps | xargs)"
 ```
 
 And also you can have a ghci session with:

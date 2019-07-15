@@ -2,6 +2,7 @@
 , name ? "example"
 , version ? "0.0.1"
 , deps ? null
+, src ? ./.
 }:
 
 let
@@ -14,10 +15,8 @@ let
 in
 
 pkgs.stdenv.mkDerivation {
-  inherit name version;
+  inherit name version src;
   
-  src = ./.;
-
   buildInputs = [ ghc ];
   
   buildPhase = '' '';
