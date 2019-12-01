@@ -44,3 +44,9 @@ nix-shell -p "pkgs.haskellPackages.ghcWithPackages (p: with p; [ $(cat .nixit.de
   -p haskellPackages.ghcid \
   --command "ghcid --command \"ghci Main.hs\""
 ```
+
+Or you may want to stick on a release:
+```
+NIX_PATH=nixpkgs=https://nixos.org/channels/nixos-19.09/nixexprs.tar.xz \
+  nix-shell -p "pkgs.haskellPackages.ghcWithPackages (p: with p; [ $(cat .nixit.deps | xargs) ])" --command "ghci Main.hs"
+```
